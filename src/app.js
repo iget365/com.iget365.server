@@ -1,7 +1,7 @@
 import fs from 'fs'
 import https from 'https'
 import Koa from 'koa'
-import serve from 'koa-static'
+import send from 'koa-send'
 import router from './router'
 import bodyParser from 'koa-bodyparser'
 import { server } from './config'
@@ -13,7 +13,18 @@ const options = {
   cert: fs.readFileSync('./sslcerts/certificate.crt', 'utf8')
 }
 
-app.use(serve(server.servePath))
+app.use(async function(ctx, next) {
+  let pth = ctx.path
+
+  if (pth.indexOf('.html') !== -1 || pth.indexOf('assets/') !== -1) {
+    pth = pth.replace(/assets\//g, '')
+
+    await send(ctx, pth, {root: server.servePath})
+  } else {
+    await next()
+  }
+})
+
 app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
