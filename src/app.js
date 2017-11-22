@@ -1,4 +1,5 @@
 import fs from 'fs'
+import http from 'http'
 import https from 'https'
 import Koa from 'koa'
 import send from 'koa-send'
@@ -29,6 +30,9 @@ app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-https.createServer(options, callback).listen(server.port)
+https.createServer(options, callback).listen(server.httpsPort)
+http.createServer(callback).listen(server.httpPort)
+// todo process.env
 
-console.log(`https server started on port ${server.port}`)
+console.log(`https server started on port ${server.httpsPort}`)
+console.log(`http server started on port ${server.httpPort}`)
