@@ -64,7 +64,7 @@ export const user = {
         where: {
           phone
         },
-        attributes: ['id', 'name', 'phone', 'avatar']
+        attributes: ['phone']
       })
 
       ctx.body = existing || {}
