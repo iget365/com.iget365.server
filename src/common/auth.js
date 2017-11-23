@@ -60,7 +60,8 @@ export const auth = {
       user = await User.findById(userId, {
         where: {
           deletedAt: null
-        }
+        },
+        attributes: ['id', 'name', 'avatar', 'phone']
       })
 
       if (!user) {

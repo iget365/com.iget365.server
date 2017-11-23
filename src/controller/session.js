@@ -90,5 +90,17 @@ export const session = {
       console.error(e.message)
       error.err500(ctx)
     }
+  },
+  async getUser (ctx) {
+    try {
+      const user = await auth.getUser(ctx)
+
+      if (user) {
+        ctx.body = user
+      }
+    } catch (e) {
+      console.error(e.message)
+      error.err500(ctx)
+    }
   }
 }

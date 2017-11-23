@@ -5,7 +5,7 @@ const router = new Router({
   prefix: '/api'
 })
 
-// public
+// below are public
 router.post('/public/users', async (ctx, next) => {
   await user.create(ctx)
 })
@@ -20,6 +20,11 @@ router.post('/public/sessions', async (ctx, next) => {
 
 router.del('/public/sessions/:token', async (ctx, next) => {
   await session.logout(ctx)
+})
+
+// below are private
+router.get('/user', async (ctx, next) => {
+  await session.getUser(ctx)
 })
 
 // links

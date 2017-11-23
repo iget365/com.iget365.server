@@ -14,7 +14,7 @@ const options = {
   cert: fs.readFileSync('./sslcerts/certificate.crt', 'utf8')
 }
 
-app.use(async function(ctx, next) {
+app.use(async function (ctx, next) {
   let pth = ctx.path
 
   if (pth.indexOf('.html') !== -1 || pth.indexOf('assets/') !== -1) {
