@@ -6,19 +6,19 @@ const router = new Router({
 })
 
 // public
-router.post('/users', async (ctx, next) => {
+router.post('/public/users', async (ctx, next) => {
   await user.create(ctx)
 })
 
-router.get('/phones/:phone', async (ctx, next) => {
+router.get('/public/phones/:phone', async (ctx, next) => {
   await user.findPhone(ctx)
 })
 
-router.post('/sessions', async (ctx, next) => {
+router.post('/public/sessions', async (ctx, next) => {
   await session.login(ctx)
 })
 
-router.del('/sessions/:token', async (ctx, next) => {
+router.del('/public/sessions/:token', async (ctx, next) => {
   await session.logout(ctx)
 })
 
