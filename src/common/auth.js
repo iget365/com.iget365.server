@@ -28,6 +28,7 @@ export const auth = {
         return consts.token.timeout
       }
 
+      // todo debug why not update
       await existing.updateAttributes({
         updatedAt: new Date()
       })
