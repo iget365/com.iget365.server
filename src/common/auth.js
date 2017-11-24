@@ -28,9 +28,10 @@ export const auth = {
         return consts.token.timeout
       }
 
-      // todo debug why not update
-      await existing.updateAttributes({
-        updatedAt: new Date()
+      // todo find a better way
+      existing.changed('updatedAt', true)
+      await existing.update({
+        updatedAt: now
       })
 
       return existing.get('userId')
@@ -59,9 +60,6 @@ export const auth = {
 
     try {
       user = await User.findById(userId, {
-        where: {
-          deletedAt: null
-        },
         attributes: ['id', 'name', 'avatar', 'phone']
       })
 
