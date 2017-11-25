@@ -17,7 +17,11 @@ const options = {
 app.use(async function (ctx, next) {
   let pth = ctx.path
 
-  if (pth.indexOf('.html') !== -1 || pth.indexOf('assets/') !== -1) {
+  if (pth === '' || pth === '/') {
+    pth = 'index.html'
+  }
+
+  if (pth.indexOf('.html') !== -1 || pth.indexOf('favicon.ico') !== -1 || pth.indexOf('assets/') !== -1) { // serve *.html、favicon、assets/*
     pth = pth.replace(/assets\//g, '')
 
     await send(ctx, pth, {root: server.servePath})
