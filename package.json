@@ -7,7 +7,7 @@
     "initdb": "node bin/initdb",
     "standard": "standard src/**/*.js --fix",
     "dev": "node bin/dev",
-    "build": "rm -fr dist & mkdir dist && npm run standard && babel src -s -d dist && node bin/build"
+    "build": "rm -fr dist && mkdir dist && npm run standard && babel src -s -d dist && node bin/build"
   },
   "author": "xinye.li",
   "license": "",

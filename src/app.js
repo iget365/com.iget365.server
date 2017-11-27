@@ -24,7 +24,7 @@ app.use(async function (ctx, next) {
   if (pth.indexOf('/api') === -1) {
     pth = pth.replace(/assets\//g, '')
 
-    await send(ctx, pth, {root: server.servePath})
+    await send(ctx, pth, {root: server.servePath, maxage: 7 * 24 * 60 * 60 * 1000})
   } else {
     await next()
   }
